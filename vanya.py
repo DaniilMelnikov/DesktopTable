@@ -75,6 +75,19 @@ class TableWindow(QtWidgets.QDialog, table.Ui_Dialog):
             self.tableWidget.setColumnCount(1)
             self.tableWidget.setRowCount(len(data['data'][self.combo_box]))
             set_item(data['data'][self.combo_box], table_widget=self.tableWidget)
+    
+    def open_save_window(self):
+        global window_save
+        self.window_save = SaveFormWindow() 
+        self.window_save.show()
+        window_save = self.window_save
+
+
+    def open_delete_window(self):
+        global window_delete
+        self.window_delete = DeleteFormWindow() 
+        self.window_delete.show()
+        window_delete = self.window_delete
 
              
 def set_item(data_items, table_widget, col_cur=False):
@@ -93,19 +106,6 @@ def set_item(data_items, table_widget, col_cur=False):
         cellinfo = QTableWidgetItem(str(item))
         table_widget.setItem(0, col, cellinfo)
         col += 1  
-
-    def open_save_window(self):
-        global window_save
-        self.window_save = SaveFormWindow() 
-        self.window_save.show()
-        window_save = self.window_save
-
-
-    def open_delete_window(self):
-        global window_delete
-        self.window_delete = DeleteFormWindow() 
-        self.window_delete.show()
-        window_delete = self.window_delete
 
         
 class SaveFormWindow(QtWidgets.QDialog, saveForm.Ui_Dialog):
