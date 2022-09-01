@@ -65,7 +65,7 @@ class AllTableWindow(QtWidgets.QDialog, allTable.Ui_Dialog):
         self.schoolTable.setRowCount(len(data['data']['school']))
         set_item(data['data']['school'], table_widget=self.schoolTable)
 
-        self.operandTable.setColumnCount(3)
+        self.operandTable.setColumnCount(4)
         self.operandTable.setRowCount(len(data['operand']))
         set_item(data["operand"], table_widget=self.operandTable, col_cur=True)
 
@@ -83,7 +83,7 @@ class TableWindow(QtWidgets.QDialog, table.Ui_Dialog):
 
         # В зависемости от комбоБокса создаются разные таблицы
         if self.combo_box == "operand":
-            self.tableWidget.setColumnCount(3)
+            self.tableWidget.setColumnCount(4)
             self.tableWidget.setRowCount(len(self.combo_box[0]))
             set_item(data["operand"], table_widget=self.tableWidget, col_cur=True)
             # Новая переменная, которая нужна для того, чтобы другой комбоБокс появлялся в SaveFormWindow только у операнда
@@ -152,6 +152,7 @@ class SaveFormWindow(QtWidgets.QDialog, saveForm.Ui_Dialog):
             for key in data['data'].keys():
                 self.comboBox.addItem(key)
             self.verticalLayout.addWidget(self.comboBox)
+            self.lineEdit_3.setEnabled(True)
         else:
             self.lineEdit_2.setEnabled(False)
 
@@ -164,6 +165,7 @@ class SaveFormWindow(QtWidgets.QDialog, saveForm.Ui_Dialog):
             list_save.append(self.lineEdit_2.text())
             list_save.append(self.lineEdit.text())
             list_save.append(self.comboBox.currentText())
+            list_save.append(self.lineEdit_3.text())
             data['operand'].append(list_save)
         else:
             data['data'][self.combo_data].append(self.lineEdit.text())
